@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './css/index.css';
+import SearchForm from './Components/SearchForm';
+import Navigation from './Components/Navigation';
+import PhotoContainer from './Components/PhotoContainer';
 
-function App() {
-  return (
-    <div className="App">
-    Getting Started
-    </div>
-  );
+export default class App extends Component {
+
+  render() {
+    return (
+      <div className="container">
+        <SearchForm />
+        <Navigation />
+        <PhotoContainer />
+      </div>
+    );
+  }
 }
-
-export default App;
