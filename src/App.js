@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
+import {
+  BrowserRouter,
+  Router,
+  Switch
+} from 'react-router-dom';
+
 import './css/index.css';
-// import apiKey from './data/config';
+import apiKey from './data/config';
 import SearchForm from './components/SearchForm';
 import Navigation from './components/Navigation';
 import PhotoContainer from './components/PhotoContainer';
