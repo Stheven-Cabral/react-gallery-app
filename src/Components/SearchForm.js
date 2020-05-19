@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+// Change this to be able to receive a callback function prop.
 export default class SearchForm extends Component {
   
   handleSearch = (e) => {
@@ -7,7 +8,6 @@ export default class SearchForm extends Component {
     let searchTopic = this.topic;
     let path = `/${searchTopic}`;
     this.props.history.push(path);
-
   }
 
   render() {

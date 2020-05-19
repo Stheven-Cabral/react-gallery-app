@@ -12,12 +12,26 @@ import Navigation from './components/Navigation';
 import PhotoContainer from './components/PhotoContainer';
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      search: ''
+    };
+  }
+
+  updateSearch = (topic) => {
+    this.setState( prevState => {
+      return {
+        search: topic
+      };
+    });
+  }
 
   render() {
     return (
       <BrowserRouter>
         <div className="container">
-          <SearchForm />
+          <SearchForm retrieveTopic={this.updateSearch}/>
           <Navigation />
 
           <Switch>
