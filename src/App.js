@@ -19,7 +19,6 @@ export default class App extends Component {
         <div className="container">
           <SearchForm />
           <Navigation />
-          <PhotoContainer />
 
           <Switch>
             {/* Use search :topic for PhotoContainer component in order to search for that specific topic. */}
