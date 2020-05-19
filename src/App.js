@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './css/index.css';
-import apiKey from './config';
-import SearchForm from './Components/SearchForm';
-import Navigation from './Components/Navigation';
-import PhotoContainer from './Components/PhotoContainer';
+import apiKey from './data/config';
+import SearchForm from './components/SearchForm';
+import Navigation from './components/Navigation';
+import PhotoContainer from './components/PhotoContainer';
 
 export default class App extends Component {
 
