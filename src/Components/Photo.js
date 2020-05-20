@@ -1,11 +1,14 @@
 import React from 'react';
 
-const Photo = () => {
-  return (
-    <li>
-    {/* Map all 24 images using interpolation */}
-      <img src="https://farm5.staticflickr.com/4334/37032996241_4c16a9b530.jpg" alt="" />
+const Photo = (props) => {
+  const listPhotos = props.photoData.map(photo => 
+    <li key={photo.id}>
+      <img src={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`} alt={photo.title} />
     </li>
+  );
+
+  return (
+    listPhotos
   )
 }
 

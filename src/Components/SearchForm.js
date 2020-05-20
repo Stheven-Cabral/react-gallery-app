@@ -9,6 +9,7 @@ class SearchForm extends Component {
     let path = `${searchTopic}`;
     this.props.history.push(path);
     this.props.onSearch(searchTopic);
+    e.currentTarget.reset();
   }
 
   render() {
