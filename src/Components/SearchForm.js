@@ -6,9 +6,9 @@ class SearchForm extends Component {
   handleSearch = (e) => {
     e.preventDefault();
     let searchTopic = this.topic.value;
-    console.log(searchTopic);
     let path = `${searchTopic}`;
     this.props.history.push(path);
+    this.props.onSearch(searchTopic);
   }
 
   render() {

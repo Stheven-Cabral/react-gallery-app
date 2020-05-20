@@ -1,12 +1,12 @@
 import React from 'react';
 import Photo from './Photo';
 
-const PhotoContainer = ({match}) => {
+const PhotoContainer = (props) => {
   return (
     <div className="photo-container">
         <h2>Results</h2>
         <ul>
-          <Photo />
+          <Photo photoData={props.fetchedData} />
         </ul>
       </div>
   )
