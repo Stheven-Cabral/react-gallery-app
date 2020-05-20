@@ -12,6 +12,16 @@ import Navigation from './components/Navigation';
 import PhotoContainer from './components/PhotoContainer';
 
 export default class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      results: []
+    };
+  }
+
+  performSearch = () => {
+    
+  }
 
   render() {
     return (
