@@ -21,6 +21,7 @@ export default class App extends Component {
           <Navigation />
 
           <Switch>
+            <Route exact path="/" render={ () => <PhotoContainer topic="random" /> } /> 
             <Route path="/cats" render={ () => <PhotoContainer topic="cats" /> } />
             <Route path="/dogs" render={ () => <PhotoContainer topic="dogs" /> } />
             <Route path="/computers" render={ () => <PhotoContainer topic="computers" /> } />
