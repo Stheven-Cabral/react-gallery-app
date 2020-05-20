@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
-// Change this to be able to receive a callback function prop.
-export default class SearchForm extends Component {
+class SearchForm extends Component {
   
   handleSearch = (e) => {
     e.preventDefault();
-    let searchTopic = this.topic;
-    let path = `/${searchTopic}`;
+    let searchTopic = this.topic.value;
+    console.log(searchTopic);
+    let path = `${searchTopic}`;
     this.props.history.push(path);
   }
 
@@ -24,3 +25,5 @@ export default class SearchForm extends Component {
     );
   }
 }
+
+export default withRouter(SearchForm);

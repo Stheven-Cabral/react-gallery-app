@@ -12,31 +12,30 @@ import Navigation from './components/Navigation';
 import PhotoContainer from './components/PhotoContainer';
 
 export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      search: ''
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     search: ''
+  //   };
+  // }
 
-  updateSearch = (topic) => {
-    this.setState( prevState => {
-      return {
-        search: topic
-      };
-    });
-  }
+  // updateSearch = (topic) => {
+  //   this.setState( prevState => {
+  //     return {
+  //       search: topic
+  //     }
+  //   });
+  // }
 
   render() {
     return (
       <BrowserRouter>
         <div className="container">
-          <SearchForm retrieveTopic={this.updateSearch}/>
+          <SearchForm />
           <Navigation />
 
           <Switch>
-            {/* Use search :topic for PhotoContainer component in order to search for that specific topic. */}
-            <Route path="/:topic" component={PhotoContainer}/>
+            <Route exact path="/:newTopic" component={PhotoContainer} />
             <Route path="/cats" render={ () => <PhotoContainer topic="cats" /> } />
             <Route path="/dogs" render={ () => <PhotoContainer topic="dogs" /> } />
             <Route path="/computers" render={ () => <PhotoContainer topic="computers" /> } />
