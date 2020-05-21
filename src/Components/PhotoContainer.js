@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Photo from './Photo';
+import { withRouter } from 'react-router-dom';
 
-const PhotoContainer = (props) => {
-  return (
-    <div className="photo-container">
-        <h2>Results</h2>
-        <ul>
-          <Photo photoData={props.fetchedData} />
-        </ul>
+class PhotoContainer extends Component {
+
+  componentDidUpdate(prevProps, prevState) {
+    // Typical usage (don't forget to compare props):
+    if (this.props.location.key !== prevProps.location.key) {
+      this.props.popSearch(this.props.match.params.newTopic);
+    }
+  }
+
+  render() {
+    return (
+      <div className="photo-container">
+          <h2>Results</h2>
+          <ul>
+            <Photo photoData={this.props.fetchedData} />
+          </ul>
       </div>
-  )
+    )
+  }
 }
 
-export default PhotoContainer;
+export default withRouter(PhotoContainer);

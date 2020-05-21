@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  BrowserRouter,
+  BrowserRouter as Router,
   Route,
   Switch
 } from 'react-router-dom';
@@ -26,7 +26,6 @@ export default class App extends Component {
 
   retrieveSearch = (queryTopic) => {
     this.setState({searchTopic: queryTopic}, this.fetchData);
-    console.log(this.state.searchTopic);
   }
 
   fetchData = () => {
@@ -36,6 +35,7 @@ export default class App extends Component {
       this.setState({
         searchResults: responseData.photos.photo
       });
+      console.log(this.state.searchTopic);
     })
     .catch(error => {
       console.log('An Error Occurred', error)
@@ -49,7 +49,6 @@ export default class App extends Component {
       this.setState({
         randomResults: responseData.photos.photo
       });
-      console.log(responseData.photos.photo);
     })
   }
 
@@ -92,7 +91,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
+      <Router>
         <div className="container">
           <SearchForm onSearch={this.retrieveSearch} />
           <Navigation />
@@ -102,10 +101,10 @@ export default class App extends Component {
             <Route path="/cats" render={ () => <PhotoContainer fetchedData={this.state.catsResults} /> } />
             <Route path="/dogs" render={ () => <PhotoContainer fetchedData={this.state.dogsResults} /> } />
             <Route path="/computers" render={ () => <PhotoContainer fetchedData={this.state.computersResults} /> } />
-            <Route path="/search/:newTopic" render={ () => <PhotoContainer fetchedData={this.state.searchResults} /> } />
+            <Route exact path="/search/:newTopic" render={ () => <PhotoContainer fetchedData={this.state.searchResults} popSearch={this.retrieveSearch} /> } />
           </Switch>
         </div>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
