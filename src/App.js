@@ -15,6 +15,7 @@ export default class App extends Component {
   constructor() {
     super();
     this.state = {
+      searchTopic: '',
       searchResults: [],
       catsResults: [],
       dogsResults: [],
@@ -23,8 +24,13 @@ export default class App extends Component {
     };
   }
 
-  performSearch = (query) => {
-    fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
+  retrieveSearch = (queryTopic) => {
+    this.setState({searchTopic: queryTopic}, this.fetchData);
+    console.log(this.state.searchTopic);
+  }
+
+  fetchData = () => {
+    fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${this.state.searchTopic}&per_page=24&format=json&nojsoncallback=1`)
     .then(response => response.json())
     .then(responseData => {
       this.setState({
@@ -43,6 +49,7 @@ export default class App extends Component {
       this.setState({
         randomResults: responseData.photos.photo
       });
+      console.log(responseData.photos.photo);
     })
   }
 
@@ -73,7 +80,6 @@ export default class App extends Component {
       this.setState({
         computersResults: responseData.photos.photo
       });
-      console.log(responseData.photos.photo);
     })
   }
 
@@ -88,7 +94,7 @@ export default class App extends Component {
     return (
       <BrowserRouter>
         <div className="container">
-          <SearchForm onSearch={this.performSearch} />
+          <SearchForm onSearch={this.retrieveSearch} />
           <Navigation />
 
           <Switch>
@@ -96,7 +102,7 @@ export default class App extends Component {
             <Route path="/cats" render={ () => <PhotoContainer fetchedData={this.state.catsResults} /> } />
             <Route path="/dogs" render={ () => <PhotoContainer fetchedData={this.state.dogsResults} /> } />
             <Route path="/computers" render={ () => <PhotoContainer fetchedData={this.state.computersResults} /> } />
-            <Route path="/:newTopic" render={ () => <PhotoContainer fetchedData={this.state.searchResults} /> } />
+            <Route path="/search/:newTopic" render={ () => <PhotoContainer fetchedData={this.state.searchResults} /> } />
           </Switch>
         </div>
       </BrowserRouter>
