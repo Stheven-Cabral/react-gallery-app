@@ -23,12 +23,6 @@ class SearchForm extends Component {
     e.target.reset();
   }
 
-  componentDidUpdate(prevProps) {
-    if(this.state.Text === null) {
-      return <Redirect to="/" />
-    }
-  }
-
   render() {
     return (
       <form className="search-form" onSubmit={this.handleSearch}>
