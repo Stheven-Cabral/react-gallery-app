@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 
 class SearchForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchText: ''
+      searchText: null
     };
   }
 
@@ -21,6 +21,12 @@ class SearchForm extends Component {
     let path = `/search/${this.state.searchText}`;
     this.props.history.push(path);
     e.target.reset();
+  }
+
+  componentDidUpdate(prevProps) {
+    if(this.state.Text === null) {
+      return <Redirect to="/" />
+    }
   }
 
   render() {

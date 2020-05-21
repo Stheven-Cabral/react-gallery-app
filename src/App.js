@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Route,
-  Switch
+  Switch  
 } from 'react-router-dom';
 
 import './css/index.css';
@@ -15,7 +15,7 @@ export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      searchTopic: '',
+      searchTopic: null,
       searchResults: [],
       catsResults: [],
       dogsResults: [],
@@ -97,11 +97,11 @@ export default class App extends Component {
           <Navigation />
 
           <Switch>
-            <Route exact path="/" render={ () => <PhotoContainer fetchedData={this.state.randomResults} /> } /> 
-            <Route path="/cats" render={ () => <PhotoContainer fetchedData={this.state.catsResults} /> } />
-            <Route path="/dogs" render={ () => <PhotoContainer fetchedData={this.state.dogsResults} /> } />
-            <Route path="/computers" render={ () => <PhotoContainer fetchedData={this.state.computersResults} /> } />
-            <Route exact path="/search/:newTopic" render={ () => <PhotoContainer fetchedData={this.state.searchResults} popSearch={this.retrieveSearch} /> } />
+            <Route exact path="/" render={ () => <PhotoContainer fetchedData={this.state.randomResults} popSearch={this.retrieveSearch} /> } /> 
+            <Route path="/cats" render={ () => <PhotoContainer fetchedData={this.state.catsResults} popSearch={this.retrieveSearch} /> } />
+            <Route path="/dogs" render={ () => <PhotoContainer fetchedData={this.state.dogsResults} popSearch={this.retrieveSearch} /> } />
+            <Route path="/computers" render={ () => <PhotoContainer fetchedData={this.state.computersResults} popSearch={this.retrieveSearch} /> } />
+            <Route path="/search/:newTopic" render={ () => <PhotoContainer fetchedData={this.state.searchResults} popSearch={this.retrieveSearch} /> } />
           </Switch>
         </div>
       </Router>

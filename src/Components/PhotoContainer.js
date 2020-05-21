@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import Photo from './Photo';
-import { withRouter } from 'react-router-dom';
+import { BrowserRouter as Router, withRouter, Redirect } from 'react-router-dom';
 
 class PhotoContainer extends Component {
+  constructor() {
+    super();
+    this.state = {
+      redirect: false
+    };
+  }
 
-  componentDidUpdate(prevProps, prevState) {
-    // Typical usage (don't forget to compare props):
+  componentDidUpdate(prevProps) {
     if (this.props.location.key !== prevProps.location.key) {
       this.props.popSearch(this.props.match.params.newTopic);
     }
