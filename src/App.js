@@ -101,7 +101,7 @@ export default class App extends Component {
             <Route path="/cats" render={ () => <PhotoContainer fetchedData={this.state.catsResults} popSearch={this.retrieveSearch} /> } />
             <Route path="/dogs" render={ () => <PhotoContainer fetchedData={this.state.dogsResults} popSearch={this.retrieveSearch} /> } />
             <Route path="/computers" render={ () => <PhotoContainer fetchedData={this.state.computersResults} popSearch={this.retrieveSearch} /> } />
-            <Route path="/search/:newTopic" render={ () => <PhotoContainer fetchedData={this.state.searchResults} popSearch={this.retrieveSearch} /> } />
+            <Route exact path="/search/:newTopic" render={ () => <PhotoContainer fetchedData={this.state.searchResults} popSearch={this.retrieveSearch} /> } />
           </Switch>
         </div>
       </Router>
