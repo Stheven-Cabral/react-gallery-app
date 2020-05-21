@@ -93,6 +93,10 @@ input {
   width: 100%;
 }
 
+.no-result {
+  margin: auto;
+}
+
 @media only screen and (max-width: 767px)  {
   body {
     padding-top: 2em;

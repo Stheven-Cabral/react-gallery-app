@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import Photo from './Photo';
-import { BrowserRouter as Router, withRouter, Redirect } from 'react-router-dom';
+import NotFound from './NotFound';
+import { withRouter } from 'react-router-dom';
 
 class PhotoContainer extends Component {
-  constructor() {
-    super();
-    this.state = {
-      redirect: false
-    };
-  }
 
   componentDidUpdate(prevProps) {
     if (this.props.location.key !== prevProps.location.key) {
@@ -17,14 +12,25 @@ class PhotoContainer extends Component {
   }
 
   render() {
-    return (
-      <div className="photo-container">
-          <h2>Results</h2>
-          <ul>
-            <Photo photoData={this.props.fetchedData} />
-          </ul>
-      </div>
-    )
+    if (this.props.fetchedData.length) {
+      return (
+        <div className="photo-container">
+            <h2>Results</h2>
+            <ul>
+              <Photo photoData={this.props.fetchedData} />
+            </ul>
+        </div>
+      )
+    } else {
+      return (
+        <div className="photo-container">
+            <h2>Results</h2>
+            <ul>
+              <NotFound />
+            </ul>
+        </div>
+      )
+    }
   }
 }
 
