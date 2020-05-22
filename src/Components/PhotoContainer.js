@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Photo from './Photo';
-import NotFound from './NotFound';
+import NotResults from './NoResults';
 import { withRouter } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
@@ -33,7 +33,7 @@ class PhotoContainer extends Component {
         <div className="photo-container">
             <h2>Results</h2>
             <ul>
-              <NotFound />
+              <NotResults />
             </ul>
         </div>
       )
