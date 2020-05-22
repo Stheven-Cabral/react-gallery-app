@@ -93,8 +93,14 @@ input {
   width: 100%;
 }
 
+/* Added Styling for 'no result' and 'not found' routes */
 .no-result {
   margin: auto;
+}
+
+.not-found {
+  margin: auto;
+  font-weight: bold;
 }
 
 @media only screen and (max-width: 767px)  {
