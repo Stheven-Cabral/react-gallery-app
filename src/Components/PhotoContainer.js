@@ -2,14 +2,18 @@ import React, { Component } from 'react';
 import Photo from './Photo';
 import NotFound from './NotFound';
 import { withRouter } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 class PhotoContainer extends Component {
 
+  componentDidMount() {
+    this.props.fetchTopicData(Cookies.get('searchCookie'));
+  }
+
   componentDidUpdate(prevProps) {
-    this.props.fetchTopicData(this.props.match.params.newTopic);
     if (this.props.location.key !== prevProps.location.key) {
-      this.props.popSearch(this.props.match.params.newTopic);
-    }
+        this.props.popSearch(Cookies.get('searchCookie'));
+      }
   }
 
   render() {
