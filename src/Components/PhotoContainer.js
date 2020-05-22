@@ -14,6 +14,7 @@ class PhotoContainer extends Component {
     if (this.props.location.key !== prevProps.location.key) {
         Cookies.remove('searchCookie');
         Cookies.set('searchCookie', this.props.match.params.newTopic);
+        this.props.popSearch(Cookies.get('searchCookie'));
       }
   }
 
