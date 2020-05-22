@@ -12,7 +12,7 @@ class PhotoContainer extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.location.key !== prevProps.location.key) {
-        this.props.popSearch(Cookies.get('searchCookie'));
+        this.props.popSearch(this.props.match.params.newTopic);
       }
   }
 
