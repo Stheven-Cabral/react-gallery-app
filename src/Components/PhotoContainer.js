@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 class PhotoContainer extends Component {
 
   componentDidUpdate(prevProps) {
+    this.props.fetchTopicData(this.props.match.params.newTopic);
     if (this.props.location.key !== prevProps.location.key) {
       this.props.popSearch(this.props.match.params.newTopic);
     }

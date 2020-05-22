@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter} from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 class SearchForm extends Component {
   constructor(props) {
@@ -14,9 +15,15 @@ class SearchForm extends Component {
       searchText: this.topic.value
     });
   }
+
+  setCookies = () => {
+    Cookies.set('searchCookie', this.topic.value)
+  }
   
   handleSearch = (e) => {
     e.preventDefault();
+    this.setCookies();
+    console.log(Cookies.get('searchCookie'));
     this.props.onSearch(this.state.searchText);
     let path = `/search/${this.state.searchText}`;
     this.props.history.push(path);

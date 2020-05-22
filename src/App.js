@@ -4,7 +4,7 @@ import {
   Route,
   Switch  
 } from 'react-router-dom';
-
+import Cookies from 'js-cookie';
 import './css/index.css';
 import apiKey from './data/config';
 import SearchForm from './components/SearchForm';
@@ -15,7 +15,7 @@ export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      searchTopic: null,
+      searchTopic: Cookies.get('searchCookie'),
       searchResults: [],
       catsResults: [],
       dogsResults: [],
@@ -28,8 +28,8 @@ export default class App extends Component {
     this.setState({searchTopic: queryTopic}, this.fetchData);
   }
 
-  fetchData = () => {
-    fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${this.state.searchTopic}&per_page=24&format=json&nojsoncallback=1`)
+  fetchData = (query) => {
+    fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
     .then(response => response.json())
     .then(responseData => {
       this.setState({
@@ -50,7 +50,6 @@ export default class App extends Component {
         randomResults: responseData.photos.photo
       });
     })
-    console.log(this.state.randomResults);
   }
 
   catsSearch = () => {
@@ -98,11 +97,11 @@ export default class App extends Component {
           <Navigation />
 
           <Switch>
-            <Route exact path="/" render={ () => <PhotoContainer fetchedData={this.state.randomResults} popSearch={this.retrieveSearch} /> } /> 
-            <Route path="/cats" render={ () => <PhotoContainer fetchedData={this.state.catsResults} popSearch={this.retrieveSearch} /> } />
-            <Route path="/dogs" render={ () => <PhotoContainer fetchedData={this.state.dogsResults} popSearch={this.retrieveSearch} /> } />
-            <Route path="/computers" render={ () => <PhotoContainer fetchedData={this.state.computersResults} popSearch={this.retrieveSearch} /> } />
-            <Route exact path="/search/:newTopic" render={ () => <PhotoContainer fetchedData={this.state.searchResults} popSearch={this.retrieveSearch} /> } />
+            <Route exact path="/" render={ () => <PhotoContainer fetchTopicData={this.fetchData} fetchedData={this.state.randomResults} popSearch={this.retrieveSearch} /> } /> 
+            <Route path="/cats" render={ () => <PhotoContainer fetchTopicData={this.fetchData} fetchedData={this.state.catsResults} popSearch={this.retrieveSearch} /> } />
+            <Route path="/dogs" render={ () => <PhotoContainer fetchTopicData={this.fetchData} fetchedData={this.state.dogsResults} popSearch={this.retrieveSearch} /> } />
+            <Route path="/computers" render={ () => <PhotoContainer fetchTopicData={this.fetchData} fetchedData={this.state.computersResults} popSearch={this.retrieveSearch} /> } />
+            <Route exact path="/search/:newTopic" render={ () => <PhotoContainer fetchTopicData={this.fetchData} fetchedData={this.state.searchResults} popSearch={this.retrieveSearch} /> } />
           </Switch>
         </div>
       </Router>
