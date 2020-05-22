@@ -50,6 +50,7 @@ export default class App extends Component {
         randomResults: responseData.photos.photo
       });
     })
+    console.log(this.state.randomResults);
   }
 
   catsSearch = () => {
