@@ -1,16 +1,16 @@
 <h1>React Gallery App</h1>
 <h3>Seventh Full Stack JavaScript TechDegree Project</h3>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-A gallery application built using React and React Router. 
+A gallery application built using [Create React App]. The project was focused on using React and React Router.
 
 <h4>Instructions Before Use</h4>
 1. Create a config.js that contains your Flickr API key:
+
 const apiKey = 'YOUR API KEY HERE';
 export default apiKey;
 
 2. Import the apiKey variable in the App.js component:
+
 import apiKey from 'ROUTE TO config.js HERE';
 
 ## Available Scripts
