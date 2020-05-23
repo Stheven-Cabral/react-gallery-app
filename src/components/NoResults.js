@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NotResults = () => {
+const NoResults = () => {
 
   return (
     <div className="no-result">
@@ -9,4 +9,4 @@ const NotResults = () => {
   )
 }
 
-export default NotResults;
+export default NoResults;

@@ -94,6 +94,11 @@ input {
 }
 
 /* Added Styling for 'no result' and 'not found' routes */
+.page-title {
+  margin-bottom: 50px;
+  color: #438bbd;
+}
+
 .no-result {
   margin: auto;
 }

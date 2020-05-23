@@ -16,7 +16,8 @@ export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      searchTopic: Cookies.get('searchCookie'),
+      loading: true,
+      searchTopic: '',
       searchResults: [],
       catsResults: [],
       dogsResults: [],
@@ -25,8 +26,8 @@ export default class App extends Component {
     };
   }
 
-  retrieveSearch = (queryTopic) => {
-    this.setState({searchTopic: queryTopic}, this.fetchData);
+  retrieveSearch = () => {
+    this.setState({searchTopic: Cookies.get('searchCookie')}, this.fetchData);
   }
 
   fetchData = () => {
@@ -34,9 +35,9 @@ export default class App extends Component {
     .then(response => response.json())
     .then(responseData => {
       this.setState({
-        searchResults: responseData.photos.photo
+        searchResults: responseData.photos.photo,
+        loading: false
       });
-      console.log(Cookies.get('searchCookie'));
     })
     .catch(error => {
       console.log('An Error Occurred', error)
@@ -48,7 +49,8 @@ export default class App extends Component {
     .then(response => response.json())
     .then(responseData => {
       this.setState({
-        randomResults: responseData.photos.photo
+        randomResults: responseData.photos.photo,
+        loading: false
       });
     })
   }
@@ -58,7 +60,8 @@ export default class App extends Component {
     .then(response => response.json())
     .then(responseData => {
       this.setState({
-        catsResults: responseData.photos.photo
+        catsResults: responseData.photos.photo,
+        loading: false
       });
     })
   }
@@ -68,7 +71,8 @@ export default class App extends Component {
     .then(response => response.json())
     .then(responseData => {
       this.setState({
-        dogsResults: responseData.photos.photo
+        dogsResults: responseData.photos.photo,
+        loading: false
       });
     })
   }
@@ -78,9 +82,16 @@ export default class App extends Component {
     .then(response => response.json())
     .then(responseData => {
       this.setState({
-        computersResults: responseData.photos.photo
+        computersResults: responseData.photos.photo,
+        loading: false
       });
     })
+  }
+
+  resetLoadingState = () => {
+    this.setState({
+      loading: true
+    });
   }
 
   componentDidMount() {
@@ -93,18 +104,20 @@ export default class App extends Component {
   render() {
     return (
       <Router>
+        <h1 className="page-title">Gallery Search Tool</h1>
         <div className="container">
-          <SearchForm onSearch={this.retrieveSearch} />
+          <SearchForm onSearch={this.retrieveSearch} resetLoadState={this.resetLoadingState} />
           <Navigation />
 
           <Switch>
-            <Route exact path="/" render={ () => <PhotoContainer fetchTopicData={this.fetchData} fetchedData={this.state.randomResults} popSearch={this.retrieveSearch} /> } /> 
-            <Route path="/cats" render={ () => <PhotoContainer fetchTopicData={this.fetchData} fetchedData={this.state.catsResults} popSearch={this.retrieveSearch} /> } />
-            <Route path="/dogs" render={ () => <PhotoContainer fetchTopicData={this.fetchData} fetchedData={this.state.dogsResults} popSearch={this.retrieveSearch} /> } />
-            <Route path="/computers" render={ () => <PhotoContainer fetchTopicData={this.fetchData} fetchedData={this.state.computersResults} popSearch={this.retrieveSearch} /> } />
-            <Route path="/search/:newTopic" render={ () => <PhotoContainer fetchTopicData={this.fetchData} fetchedData={this.state.searchResults} popSearch={this.retrieveSearch} /> } />
+            <Route exact path="/" /> 
+            <Route path="/cats" render={ () => <PhotoContainer fetchTopicData={this.fetchData} fetchedData={this.state.catsResults} popSearch={this.retrieveSearch} loadState={this.state.loading}/> } />
+            <Route path="/dogs" render={ () => <PhotoContainer fetchTopicData={this.fetchData} fetchedData={this.state.dogsResults} popSearch={this.retrieveSearch} loadState={this.state.loading}/> } />
+            <Route path="/computers" render={ () => <PhotoContainer fetchTopicData={this.fetchData} fetchedData={this.state.computersResults} popSearch={this.retrieveSearch} loadState={this.state.loading}/> } />
+            <Route path="/search/:newTopic" render={ () => <PhotoContainer fetchTopicData={this.fetchData} fetchedData={this.state.searchResults} popSearch={this.retrieveSearch} loadState={this.state.loading}/> } />
             <Route component={NotFound}/>
           </Switch>
+        
         </div>
       </Router>
     );

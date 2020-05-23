@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Photo from './Photo';
-import NotResults from './NoResults';
+import NoResults from './NoResults';
 import { withRouter } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
@@ -19,22 +19,24 @@ class PhotoContainer extends Component {
   }
 
   render() {
-    if (this.props.fetchedData.length) {
+    if (this.props.loadState) {
+      return <h2>Loading Results...</h2>
+    } else if (this.props.fetchedData.length) {
       return (
         <div className="photo-container">
-            <h2>Results</h2>
-            <ul>
-              <Photo photoData={this.props.fetchedData} />
-            </ul>
+          <h2>Results</h2>
+          <ul>
+            <Photo photoData={this.props.fetchedData} />
+          </ul>
         </div>
       )
     } else {
       return (
         <div className="photo-container">
-            <h2>Results</h2>
-            <ul>
-              <NotResults />
-            </ul>
+          <h2>Results</h2>
+          <ul>
+            <NoResults />
+          </ul>
         </div>
       )
     }

@@ -21,10 +21,11 @@ class SearchForm extends Component {
   }
   
   handleSearch = (e) => {
+    this.props.resetLoadState();
     e.preventDefault();
     this.setCookies();
     console.log(Cookies.get('searchCookie'))
-    this.props.onSearch(this.state.searchText);
+    this.props.onSearch();
     let path = `/search/${this.state.searchText}`;
     this.props.history.push(path);
     console.log(this.state.searchText);
