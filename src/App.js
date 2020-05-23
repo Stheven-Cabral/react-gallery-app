@@ -118,25 +118,25 @@ export default class App extends Component {
 
           <Switch>
             <Route exact path="/" /> 
-            <Route path="/cats" render={ () => 
+            <Route exact path="/cats" render={ () => 
               <PhotoContainer 
               fetchTopicData={this.fetchData} 
               fetchedData={this.state.catsResults} 
               popSearch={this.retrieveSearch} 
               loadState={this.state.loading}/> } />
-            <Route path="/dogs" render={ () => 
+            <Route exact path="/dogs" render={ () => 
               <PhotoContainer 
               fetchTopicData={this.fetchData} 
               fetchedData={this.state.dogsResults} 
               popSearch={this.retrieveSearch} 
               loadState={this.state.loading}/> } />
-            <Route path="/computers" render={ () => 
+            <Route exact path="/computers" render={ () => 
               <PhotoContainer 
               fetchTopicData={this.fetchData} 
               fetchedData={this.state.computersResults} 
               popSearch={this.retrieveSearch} 
               loadState={this.state.loading}/> } />
-            <Route path="/search/:newTopic" render={ () => 
+            <Route exact path="/search/:newTopic" render={ () => 
               <PhotoContainer fetchTopicData={this.fetchData} 
               fetchedData={this.state.searchResults} 
               popSearch={this.retrieveSearch} 
