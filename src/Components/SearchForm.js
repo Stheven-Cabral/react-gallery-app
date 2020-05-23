@@ -10,25 +10,41 @@ class SearchForm extends Component {
     };
   }
 
+  /***
+   * `onSearchValueChange` function - stores the user's search input value in the the `searchText` state.
+   */
   onSearchValueChange = () => {
     this.setState({ 
       searchText: this.topic.value
     });
   }
 
+  /***
+   * `setCookies` function - sets the cookie with the name `searchCookie` to the user's search form input value.
+   */
   setCookies = () => {
     Cookies.set('searchCookie', this.topic.value)
   }
   
+  /***
+   * `handleSearch` function performs the following:
+      - prevents submit default actions.
+      - Calls the `resetLoadState` function prop to set the `loading` state in App.js to true.
+      - Calls the `setCookie` function.
+      - Calls the `onSearch` function prop (`retrieveSearch` function from App.js).
+      - Sets the URL to a path that includes the user's search form input value.
+      - Resets search input value.
+   */
   handleSearch = (e) => {
-    this.props.resetLoadState();
     e.preventDefault();
+
+    this.props.resetLoadState();
     this.setCookies();
-    console.log(Cookies.get('searchCookie'))
     this.props.onSearch();
+
     let path = `/search/${this.state.searchText}`;
     this.props.history.push(path);
-    console.log(this.state.searchText);
+    
     e.target.reset();
   }
 

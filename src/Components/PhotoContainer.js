@@ -6,10 +6,17 @@ import Cookies from 'js-cookie';
 
 class PhotoContainer extends Component {
 
+  /***
+   * On component mount, the `fetchTopicData` function prop is called to fetch data based on a user's search value that was set to cookie `searchCookie`.
+   * This ensures fetched data is available so when a user reloads the page, the users search results are displayed.
+   */
   componentDidMount() {
     this.props.fetchTopicData(Cookies.get('searchCookie'));
   }
 
+  /***
+   * The following code ensures proper search results are displayed when the back and forward browser buttons are clicked.
+   */
   componentDidUpdate(prevProps) {
     if (this.props.location.key !== prevProps.location.key) {
         Cookies.remove('searchCookie');
