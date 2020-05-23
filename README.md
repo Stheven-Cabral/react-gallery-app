@@ -7,7 +7,7 @@ A gallery application built using [Create React App]. The project was focused on
 
 <h5>1. Create a config.js that contains your Flickr API key:</h5>
 
-const apiKey = 'YOUR API KEY HERE';
+const apiKey = 'YOUR API KEY HERE';<br>
 export default apiKey;
 
 <h5>2. Import the apiKey variable in the App.js component:</h5>
