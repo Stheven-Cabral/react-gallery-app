@@ -4,12 +4,13 @@
 A gallery application built using [Create React App]. The project was focused on using React and React Router.
 
 <h4>Instructions Before Use</h4>
-1. Create a config.js that contains your Flickr API key:
+
+<h5>1. Create a config.js that contains your Flickr API key:</h5>
 
 const apiKey = 'YOUR API KEY HERE';
 export default apiKey;
 
-2. Import the apiKey variable in the App.js component:
+<h5>2. Import the apiKey variable in the App.js component:</h5>
 
 import apiKey from 'ROUTE TO config.js HERE';
 
