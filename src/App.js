@@ -5,10 +5,10 @@ import {
   Switch  
 } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import SearchForm from './components/SearchForm';
-import Navigation from './components/Navigation';
-import PhotoContainer from './components/PhotoContainer';
-import NotFound from './components/NotFound';
+import SearchForm from './Components/SearchForm';
+import Navigation from './Components/Navigation';
+import PhotoContainer from './Components/PhotoContainer';
+import NotFound from './Components/NotFound';
 import './css/index.css';
 import apiKey from './data/config';
 
